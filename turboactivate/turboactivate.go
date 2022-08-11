@@ -4,12 +4,13 @@ package turboactivate // import "golang.wyday.com/turboactivate"
 
 /*
 #cgo CFLAGS: -I .
-#cgo LDFLAGS: -L . -L .. -lTurboActivate
+#cgo LDFLAGS: -L . -L .. /usr/local/lib/libTurboActivate.a -lrt -pthread -lstdc++
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "TurboActivate.h"
 */
+
 import "C"
 import (
 	"errors"
