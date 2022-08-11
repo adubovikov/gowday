@@ -1,5 +1,6 @@
 // Copyright 2018 wyDay, LLC. All rights reserved.
 
+//go:build !windows
 // +build !windows
 
 package turboactivate // import "golang.wyday.com/turboactivate"
@@ -7,6 +8,8 @@ package turboactivate // import "golang.wyday.com/turboactivate"
 /*
 #cgo CFLAGS: -I .
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "TurboActivate.h"
 */
 import "C"

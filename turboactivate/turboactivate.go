@@ -6,6 +6,8 @@ package turboactivate // import "golang.wyday.com/turboactivate"
 #cgo CFLAGS: -I .
 #cgo LDFLAGS: -L . -L .. -lTurboActivate
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "TurboActivate.h"
 */
 import "C"
@@ -186,7 +188,9 @@ func NewTurboActivate(taGUID string, pdetsFilename string) (TurboActivate, error
 // with a valid product key or have used the TurboActivate Wizard sometime before
 // calling this function.
 // extraData: Extra data to pass to the LimeLM servers that will be visible for you to see and use.
-//            Maximum size is 255 UTF-8 characters
+//
+//	Maximum size is 255 UTF-8 characters
+//
 // Returns nil on no error.
 func (ta *TurboActivate) Activate(extraData string) error {
 
@@ -479,11 +483,13 @@ func (ta *TurboActivate) IsGenuine() (IsGenuineResult, error) {
 // days it check if the customer is genuinely activated by verifying with the
 // LimeLM servers.
 // daysBetweenChecks: How often to contact the LimeLM servers for validation.
-//                    90 days recommended
-// graceDaysOnInetErr: If the call fails because of an internet error, how long, in days,
-//                     should the grace period last (before returning deactivating and
-//                     returning IGRNotGenuine).
 //
+//	90 days recommended
+//
+// graceDaysOnInetErr: If the call fails because of an internet error, how long, in days,
+//
+//	should the grace period last (before returning deactivating and
+//	returning IGRNotGenuine).
 func (ta *TurboActivate) IsGenuineEx(daysBetweenChecks uint32, graceDaysOnInetErr uint32, skipOffline bool, offlineShowInetErr bool) (IsGenuineResult, error) {
 
 	var genOpts C.GENUINE_OPTIONS
